@@ -29,6 +29,8 @@ export type ChartPoint = {
   protein: number | null;
 };
 
+const chartSize = { width: 640, height: 224 };
+
 const tooltipStyle = {
   background: "#171910",
   border: "1px solid #313628",
@@ -99,7 +101,7 @@ export function TrendCharts({ points }: { points: ChartPoint[] }) {
       </div>
 
       <ChartFrame title="Recovery and HRV" note="Green starts at 67%. HRV is on the right axis." empty={!has(window, "recovery") && !has(window, "hrv")}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartSize}>
           <ComposedChart data={window} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
             <CartesianGrid stroke="#2a2e22" vertical={false} />
             <XAxis dataKey="label" {...axis} interval={range === 30 ? 4 : 0} />
@@ -114,7 +116,7 @@ export function TrendCharts({ points }: { points: ChartPoint[] }) {
       </ChartFrame>
 
       <ChartFrame title="Sleep" note="Hours asleep, with sleep performance on the line." empty={!has(window, "sleep")}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartSize}>
           <ComposedChart data={window} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
             <CartesianGrid stroke="#2a2e22" vertical={false} />
             <XAxis dataKey="label" {...axis} interval={range === 30 ? 4 : 0} />
@@ -128,7 +130,7 @@ export function TrendCharts({ points }: { points: ChartPoint[] }) {
       </ChartFrame>
 
       <ChartFrame title="Strain and burn" note="WHOOP strain against Garmin total calories." empty={!has(window, "strain") && !has(window, "burn")}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartSize}>
           <ComposedChart data={window} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
             <CartesianGrid stroke="#2a2e22" vertical={false} />
             <XAxis dataKey="label" {...axis} interval={range === 30 ? 4 : 0} />
@@ -142,7 +144,7 @@ export function TrendCharts({ points }: { points: ChartPoint[] }) {
       </ChartFrame>
 
       <ChartFrame title="Calories in and out" note="MyFitnessPal intake against Garmin expenditure. Target is 2,850." empty={!has(window, "burn") && !has(window, "intake")}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartSize}>
           <ComposedChart data={window} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
             <CartesianGrid stroke="#2a2e22" vertical={false} />
             <XAxis dataKey="label" {...axis} interval={range === 30 ? 4 : 0} />
@@ -156,7 +158,7 @@ export function TrendCharts({ points }: { points: ChartPoint[] }) {
       </ChartFrame>
 
       <ChartFrame title="Protein" note="Daily target is 200 g." empty={!has(window, "protein")}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartSize}>
           <ComposedChart data={window} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
             <CartesianGrid stroke="#2a2e22" vertical={false} />
             <XAxis dataKey="label" {...axis} interval={range === 30 ? 4 : 0} />
